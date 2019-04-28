@@ -1,3 +1,4 @@
+
 To run this solution locally in your machine, please take care that you have the following tools installed:
 - MongoDb
 - Redis
