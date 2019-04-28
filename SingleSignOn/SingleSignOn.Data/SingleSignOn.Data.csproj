@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Documents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,11 +8,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
-    <ProjectReference Include="..\SingleSignOn.Infra\SingleSignOn.Infra.csproj" />
+    <ProjectReference Include="..\SingleSignOn.StartupServices\SingleSignOn.StartupServices.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
   </ItemGroup>
 
 </Project>

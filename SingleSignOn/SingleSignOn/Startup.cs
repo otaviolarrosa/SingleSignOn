@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using DependencyInjection = SingleSignOn.StartupServices.DependencyInjection;
+using GlobalSettings = SingleSignOn.StartupServices.GlobalSettings;
+using CachingStartup = SingleSignOn.StartupServices.Caching;
 
 namespace SingleSignOn
 {
@@ -25,6 +22,9 @@ namespace SingleSignOn
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            new GlobalSettings.Startup().Start(Configuration);
+            new DependencyInjection.Startup().Start(services);
+            new CachingStartup.Startup().Start(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
