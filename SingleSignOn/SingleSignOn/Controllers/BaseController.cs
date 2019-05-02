@@ -22,7 +22,7 @@ namespace SingleSignOn.Controllers
                     errors.Add(new ErrorApiViewModel(item.PropertyName, item.ErrorMessage));
                 });
 
-                return BadRequest(new { errors });
+                return BadRequest(errors);
             }
             return Ok(result);
         }

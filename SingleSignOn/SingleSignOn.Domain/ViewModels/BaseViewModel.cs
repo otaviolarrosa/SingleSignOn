@@ -14,10 +14,13 @@ namespace SingleSignOn.Domain.ViewModels
 
         [JsonIgnore]
         public string Id { get; set; }
+
         [JsonIgnore]
         public bool Valid { get => ValidationResult.Errors.Any() ? false : true; private set { } }
+
         [JsonIgnore]
         public bool Invalid => !Valid;
+
         [JsonIgnore]
         public ValidationResult ValidationResult { get; set; }
 

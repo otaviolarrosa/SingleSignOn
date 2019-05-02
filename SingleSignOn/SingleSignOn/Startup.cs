@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using DependencyInjection = SingleSignOn.StartupServices.DependencyInjection;
 using GlobalSettings = SingleSignOn.StartupServices.GlobalSettings;
 using CachingStartup = SingleSignOn.StartupServices.Caching;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SingleSignOn
 {
@@ -25,6 +26,23 @@ namespace SingleSignOn
             new GlobalSettings.Startup().Start(Configuration);
             new DependencyInjection.Startup().Start(services);
             new CachingStartup.Startup().Start(services);
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Title = "Single Sign On - API",
+                        Version = "v1",
+                        Description = "Single Sign On Microservice",
+                        Contact = new Contact
+                        {
+                            Name = "Otávio Larrosa",
+                            Url = "https://github.com/otaviolarrosa/SingleSignOn"
+                        }
+                    });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +52,15 @@ namespace SingleSignOn
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Single Sign On Api");
+                c.RoutePrefix = "swagger";
+            });
+
 
             app.UseMvc();
         }

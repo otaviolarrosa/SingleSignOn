@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace SingleSignOn.Domain.Tests
+namespace SingleSignOn.Tests.Shared
 {
     [TestFixture]
     public abstract class BaseTest

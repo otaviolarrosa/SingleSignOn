@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SingleSignOn.Caching.Interfaces;
 using SingleSignOn.Data.Interfaces.Repositories;
 using SingleSignOn.Domain.Enums.Ping;
+using SingleSignOn.Tests.Shared;
 using SingleSignOn.Utils.ExtensionMethods;
 using System;
 using PingClass = SingleSignOn.Domain.Ping.Ping;

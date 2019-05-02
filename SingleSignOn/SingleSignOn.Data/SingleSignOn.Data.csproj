@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Documents\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
   </ItemGroup>
 
