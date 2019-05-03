@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.ViewModels;
-using SingleSignOn.Utils;
+using SingleSignOn.Utils.ExtensionMethods;
 
 namespace SingleSignOn.Controllers
 {

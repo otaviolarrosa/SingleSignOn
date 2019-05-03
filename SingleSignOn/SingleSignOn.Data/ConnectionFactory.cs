@@ -2,6 +2,7 @@
 using SingleSignOn.Data.Documents;
 using SingleSignOn.Data.Interfaces;
 using SingleSignOn.Utils;
+using SingleSignOn.Utils.ExtensionMethods;
 
 namespace SingleSignOn.Data
 {

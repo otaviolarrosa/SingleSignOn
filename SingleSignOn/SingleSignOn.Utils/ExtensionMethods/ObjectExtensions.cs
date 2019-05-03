@@ -1,4 +1,4 @@
-﻿namespace SingleSignOn.Utils
+﻿namespace SingleSignOn.Utils.ExtensionMethods
 {
     public static class ObjectExtensions
     {
