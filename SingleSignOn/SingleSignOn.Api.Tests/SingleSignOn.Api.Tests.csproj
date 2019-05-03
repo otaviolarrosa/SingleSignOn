@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
     <ProjectReference Include="..\SingleSignOn.Tests.Shared\SingleSignOn.Tests.Shared.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
     <ProjectReference Include="..\SingleSignOn\SingleSignOn.csproj" />
   </ItemGroup>
 

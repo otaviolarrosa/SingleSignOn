@@ -15,6 +15,9 @@ namespace SingleSignOn.Domain.ViewModels.User
         public string Email { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string Token { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<string> RefreshTokens { get; set; }
     }
 }

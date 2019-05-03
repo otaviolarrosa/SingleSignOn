@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SingleSignOn.Data\SingleSignOn.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Login\" />
+  </ItemGroup>
+
 </Project>
