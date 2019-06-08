@@ -5,6 +5,11 @@ namespace SingleSignOn.Domain.ViewModels.User
 {
     public class UserViewModel : BaseViewModel
     {
+        public UserViewModel()
+        {
+            RefreshTokens = new List<string>();
+        }
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string UserName { get; set; }
 
@@ -18,6 +23,6 @@ namespace SingleSignOn.Domain.ViewModels.User
         public string Token { get; set; }
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public IEnumerable<string> RefreshTokens { get; set; }
+        public List<string> RefreshTokens { get; set; }
     }
 }

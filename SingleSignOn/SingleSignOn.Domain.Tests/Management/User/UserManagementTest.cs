@@ -1,16 +1,15 @@
 ﻿using FluentValidation.Results;
 using Moq;
 using NUnit.Framework;
-using UserDocument = SingleSignOn.Data.Documents.User;
 using SingleSignOn.Data.Interfaces.Repositories;
 using SingleSignOn.Domain.Interfaces.Management.User;
-using SingleSignOn.Domain.Management;
+using SingleSignOn.Domain.Management.User;
 using SingleSignOn.Domain.ViewModels.User;
 using SingleSignOn.Tests.Shared;
 using SingleSignOn.Utils.ExtensionMethods;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SingleSignOn.Domain.Management.User;
+using UserDocument = SingleSignOn.Data.Documents.User;
 
 namespace SingleSignOn.Domain.Tests.Management.User
 {

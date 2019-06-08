@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Login\**" />
+    <EmbeddedResource Remove="Login\**" />
+    <None Remove="Login\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
@@ -13,10 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SingleSignOn.Caching\SingleSignOn.Caching.csproj" />
     <ProjectReference Include="..\SingleSignOn.Data\SingleSignOn.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Login\" />
   </ItemGroup>
 
 </Project>

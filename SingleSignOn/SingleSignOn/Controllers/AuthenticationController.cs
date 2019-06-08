@@ -15,6 +15,7 @@ namespace SingleSignOn.Controllers
             this.authentication = authentication;
         }
 
+        [HttpPost]
         public IActionResult Login(UserViewModel userViewModel)
         {
             try

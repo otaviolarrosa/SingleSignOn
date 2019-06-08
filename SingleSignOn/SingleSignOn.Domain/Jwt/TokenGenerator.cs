@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using SingleSignOn.Domain.Interfaces.Jwt;
 using SingleSignOn.Utils;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace SingleSignOn.Domain.Jwt
 {
-    public class TokenGenerator
+    public class TokenGenerator : ITokenGenerator
     {
         public string GenerateToken(string username)
         {

@@ -26,5 +26,10 @@ namespace SingleSignOn.Data.Repositories
         {
             return base.collection.Find(prop => prop.UserName == username).ToList();
         }
+
+        public List<User> GetUserByUsernameAndPassword(string username, string passwordHash)
+        {
+            return base.collection.Find(prop => prop.UserName == username && prop.PasswordHash == passwordHash).ToList();
+        }
     }
 }

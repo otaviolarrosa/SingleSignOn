@@ -20,4 +20,9 @@
     <ProjectReference Include="..\SingleSignOn.Tests.Shared\SingleSignOn.Tests.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\Authentication\" />
+    <Folder Include="Validators\User\" />
+  </ItemGroup>
+
 </Project>
