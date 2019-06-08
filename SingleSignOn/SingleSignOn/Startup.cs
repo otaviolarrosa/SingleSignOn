@@ -57,12 +57,9 @@ namespace SingleSignOn
 
             app.UseSwaggerUI(c =>
             {
-                ///swagger/v1/
-                c.SwaggerEndpoint("swagger.json", "Single Sign On Api");
+                c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"Single Sign On Api");
                 c.RoutePrefix = "swagger";
             });
-
-
             app.UseMvc();
         }
     }
