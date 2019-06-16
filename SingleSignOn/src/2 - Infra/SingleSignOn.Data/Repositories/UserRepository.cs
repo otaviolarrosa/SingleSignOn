@@ -3,6 +3,7 @@ using SingleSignOn.Data.Documents;
 using SingleSignOn.Data.Interfaces;
 using SingleSignOn.Data.Interfaces.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SingleSignOn.Data.Repositories
 {
@@ -15,6 +16,14 @@ namespace SingleSignOn.Data.Repositories
             this.connectionFactory = connectionFactory;
             this.connectionFactory.SetCollectionName("Users");
             collection = connectionFactory.GetCollection<User>();
+        }
+
+        public List<User> GetUsersByUsername(List<string> usernames)
+        {
+            var query = from e in base.collection.AsQueryable<User>()
+                        select e;
+            usernames.ForEach(username => { query.Where(_ => _.UserName == username); });
+            return query.ToList();
         }
 
         public List<User> GetUserByEmail(string email)

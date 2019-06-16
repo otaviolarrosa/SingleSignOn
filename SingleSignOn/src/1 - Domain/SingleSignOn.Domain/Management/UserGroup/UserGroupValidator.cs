@@ -9,14 +9,17 @@ namespace SingleSignOn.Domain.Management.UserGroup
     public class UserGroupValidator : BaseValidator<UserGroupViewModel>, IUserGroupValidator
     {
         private readonly IUserGroupRepository userGroupRepository;
-        public UserGroupValidator(IUserGroupRepository userGroupRepository)
+        private readonly IUserRepository userRepository;
+
+        public UserGroupValidator(IUserGroupRepository userGroupRepository, IUserRepository userRepository)
         {
             this.userGroupRepository = userGroupRepository;
+            this.userRepository = userRepository;
         }
 
         public void ValidateToCreateUserGroup(ref UserGroupViewModel userGroupViewModel)
         {
-            base.Validate(ref userGroupViewModel, new CreateUserGroupValidator(userGroupRepository));
+            base.Validate(ref userGroupViewModel, new CreateUserGroupValidator(userGroupRepository, userRepository));
         }
     }
 }

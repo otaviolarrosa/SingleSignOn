@@ -8,5 +8,6 @@ namespace SingleSignOn.Data.Interfaces.Repositories
         List<User> GetUserByUsername(string username);
         List<User> GetUserByEmail(string email);
         List<User> GetUserByUsernameAndPassword(string username, string passwordHashpassword);
+        List<User> GetUsersByUsername(List<string> usernames);
     }
 }

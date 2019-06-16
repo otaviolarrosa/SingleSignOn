@@ -7,23 +7,27 @@ using SingleSignOn.Domain.Management.UserGroup;
 using SingleSignOn.Domain.ViewModels.UserGroup;
 using SingleSignOn.Tests.Shared;
 using UserGroupDocument = SingleSignOn.Data.Documents.UserGroup;
+using UserDocument = SingleSignOn.Data.Documents.User;
 
 namespace SingleSignOn.Domain.Tests.Management.UserGroup
 {
     public class UserGroupValidatorTest : BaseTest
     {
         UserGroupValidator targetClass;
-        Mock<IUserGroupRepository> repository;
+        Mock<IUserGroupRepository> userGroupRepository;
+        Mock<IUserRepository> userRepository;
 
         protected override void SetupTest()
         {
-            repository = new Mock<IUserGroupRepository>();
-            targetClass = new UserGroupValidator(repository.Object);
+            userGroupRepository = new Mock<IUserGroupRepository>();
+            userRepository = new Mock<IUserRepository>();
+            targetClass = new UserGroupValidator(userGroupRepository.Object, userRepository.Object);
         }
 
         protected override void TearDownTest()
         {
-            repository = null;
+            userGroupRepository = null;
+            userRepository = null;
             targetClass = null;
         }
 
@@ -37,7 +41,23 @@ namespace SingleSignOn.Domain.Tests.Management.UserGroup
                 Users = new List<string> { "firstUserName", "secondUserName", "thirdUserName" }
             };
 
-            repository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            var firstUser = new UserDocument
+            {
+                UserName = "firstUserName"
+            };
+
+            var secondUser = new UserDocument
+            {
+                UserName = "secondUserName"
+            };
+
+            var thirdUser = new UserDocument
+            {
+                UserName = "thirdUserName"
+            };
+
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument> { firstUser, secondUser, thirdUser });
 
             targetClass.ValidateToCreateUserGroup(ref userGroup);
             Assert.IsTrue(userGroup.Valid);
@@ -55,7 +75,8 @@ namespace SingleSignOn.Domain.Tests.Management.UserGroup
                 Users = new List<string> { "firstUserName", "secondUserName", "thirdUserName" }
             };
 
-            repository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument> { });
 
             targetClass.ValidateToCreateUserGroup(ref userGroup);
             Assert.IsFalse(userGroup.Valid);
@@ -75,7 +96,8 @@ namespace SingleSignOn.Domain.Tests.Management.UserGroup
                 Users = new List<string> { "firstUserName", "secondUserName", "thirdUserName" }
             };
 
-            repository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument> { });
 
             targetClass.ValidateToCreateUserGroup(ref userGroup);
             Assert.IsFalse(userGroup.Valid);
@@ -103,7 +125,8 @@ namespace SingleSignOn.Domain.Tests.Management.UserGroup
                 Users = userGroup.Users
             };
 
-            repository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { userGroupDocument });
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { userGroupDocument });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument> { });
 
             targetClass.ValidateToCreateUserGroup(ref userGroup);
             Assert.IsFalse(userGroup.Valid);
@@ -116,13 +139,91 @@ namespace SingleSignOn.Domain.Tests.Management.UserGroup
         [Test]
         public void Will_Return_Error_Because_Some_Of_Users_Provided_Doesnt_Exists_In_Database()
         {
-            Assert.Fail();
+            var userGroup = new UserGroupViewModel
+            {
+                GroupName = "MyUserGroupName",
+                Permissions = new List<string> { "FIRST_PERMISSION_RULE", "SECOND_PERMISSION_RULE", "THIRD_PERMISSION_RULE" },
+                Users = new List<string> { "firstUserName", "secondUserName", "thirdUserName" }
+            };
+
+            var firstUser = new UserDocument
+            {
+                UserName = "firstUserName"
+            };
+
+            var secondUser = new UserDocument
+            {
+                UserName = "secondUserName"
+            };
+
+            var thirdUser = new UserDocument
+            {
+                UserName = "thirdUserName"
+            };
+
+            var userGroupDocument = new UserGroupDocument
+            {
+                GroupName = userGroup.GroupName,
+                Permissions = userGroup.Permissions,
+            };
+
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument>
+            {
+                firstUser, secondUser
+            });
+
+            targetClass.ValidateToCreateUserGroup(ref userGroup);
+            Assert.IsFalse(userGroup.Valid);
+            Assert.IsTrue(userGroup.Invalid);
+            Assert.IsNotEmpty(userGroup.ValidationResult.Errors);
+            Assert.AreEqual("One or more users provided does not exists.", userGroup.ValidationResult.Errors.FirstOrDefault().ErrorMessage);
+            Assert.AreEqual("Users", userGroup.ValidationResult.Errors.FirstOrDefault().PropertyName);
         }
 
         [Test]
         public void Will_Return_Error_Because_Some_Of_Permissions_Provided_Is_Empty()
         {
-            Assert.Fail();
+            var userGroup = new UserGroupViewModel
+            {
+                GroupName = "MyUserGroupName",
+                Permissions = new List<string> { "FIRST_PERMISSION_RULE", "SECOND_PERMISSION_RULE", "" },
+                Users = new List<string> { "firstUserName", "secondUserName", "thirdUserName" }
+            };
+
+            var firstUser = new UserDocument
+            {
+                UserName = "firstUserName"
+            };
+
+            var secondUser = new UserDocument
+            {
+                UserName = "secondUserName"
+            };
+
+            var thirdUser = new UserDocument
+            {
+                UserName = "thirdUserName"
+            };
+
+            var userGroupDocument = new UserGroupDocument
+            {
+                GroupName = userGroup.GroupName,
+                Permissions = userGroup.Permissions,
+            };
+
+            userGroupRepository.Setup(_ => _.GetUserGroupByName(It.IsAny<string>())).Returns(new List<UserGroupDocument> { });
+            userRepository.Setup(_ => _.GetUsersByUsername(It.IsAny<List<string>>())).Returns(new List<UserDocument>
+            {
+                firstUser, secondUser, thirdUser
+            });
+
+            targetClass.ValidateToCreateUserGroup(ref userGroup);
+            Assert.IsFalse(userGroup.Valid);
+            Assert.IsTrue(userGroup.Invalid);
+            Assert.IsNotEmpty(userGroup.ValidationResult.Errors);
+            Assert.AreEqual("Permission could not have empty values.", userGroup.ValidationResult.Errors.FirstOrDefault().ErrorMessage);
+            Assert.AreEqual("Permissions", userGroup.ValidationResult.Errors.FirstOrDefault().PropertyName);
         }
     }
 }
