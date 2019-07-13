@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Management.UserGroup;
 using SingleSignOn.Domain.ViewModels.UserGroup;

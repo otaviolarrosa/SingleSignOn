@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Authentication;
 using SingleSignOn.Domain.ViewModels.User;
 using System;
@@ -16,6 +17,7 @@ namespace SingleSignOn.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login(UserViewModel userViewModel)
         {
             try
@@ -28,6 +30,5 @@ namespace SingleSignOn.Controllers
                 return InternalServerError(ex);
             }
         }
-
     }
 }

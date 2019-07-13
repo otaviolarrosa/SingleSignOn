@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.ViewModels;
 using SingleSignOn.Utils.ExtensionMethods;
@@ -10,6 +11,7 @@ namespace SingleSignOn.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public abstract class BaseController : ControllerBase
     {
         protected IActionResult Sucess(BaseViewModel result)

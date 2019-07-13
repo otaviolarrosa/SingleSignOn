@@ -7,6 +7,11 @@ using DependencyInjection = SingleSignOn.StartupServices.DependencyInjection;
 using GlobalSettings = SingleSignOn.StartupServices.GlobalSettings;
 using CachingStartup = SingleSignOn.StartupServices.Caching;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Threading.Tasks;
+using SingleSignOn.Utils;
 
 namespace SingleSignOn
 {
@@ -26,6 +31,32 @@ namespace SingleSignOn
             new GlobalSettings.Startup().Start(Configuration);
             new DependencyInjection.Startup().Start(services);
             new CachingStartup.Startup().Start(services);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(AppSettings.SecretKey))
+                    };
+
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnAuthenticationFailed = context =>
+                        {
+                            Console.WriteLine("Invalid Token" + context.Exception.Message);
+                            return Task.CompletedTask;
+                        },
+                        OnTokenValidated = context =>
+                        {
+                            Console.WriteLine("Valid Token " + context.SecurityToken);
+                            return Task.CompletedTask;
+                        }
+                    };
+
+                });
 
             services.AddSwaggerGen(options =>
             {

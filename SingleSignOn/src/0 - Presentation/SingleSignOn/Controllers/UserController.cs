@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Management.User;
 using SingleSignOn.Domain.ViewModels.User;
 using System;
@@ -15,6 +16,7 @@ namespace SingleSignOn.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult CreateUser(UserViewModel userViewModel)
         {
             try
