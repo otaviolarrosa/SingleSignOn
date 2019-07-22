@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Ping;
 using System;
 
@@ -14,6 +15,7 @@ namespace SingleSignOn.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Ping()
         {
             try

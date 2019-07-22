@@ -14,7 +14,7 @@ namespace SingleSignOn.Data.Repositories
 
         public void PingDatabase()
         {
-            connectionFactory.GetDatabase().ListCollectionNames();
+            var collectionNames = connectionFactory.GetDatabase().ListCollectionNames();
         }
     }
 }
