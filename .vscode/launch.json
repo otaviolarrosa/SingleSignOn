@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/SingleSignOn/src/0 - Presentation/SingleSignOn/bin/Debug/netcoreapp2.2/SingleSignOn.dll",
+            "program": "${workspaceFolder}/SingleSignOn/src/0 - Presentation/SingleSignOn/bin/Debug/netcoreapp3.1/SingleSignOn.dll",
             "args": [],
             "cwd": "${workspaceFolder}/SingleSignOn/src/0 - Presentation/SingleSignOn",
             "stopAtEntry": false,

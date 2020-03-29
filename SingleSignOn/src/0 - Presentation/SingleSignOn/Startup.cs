@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Threading.Tasks;
 using SingleSignOn.Utils;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace SingleSignOn
 {
@@ -27,7 +29,7 @@ namespace SingleSignOn
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(option => option.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Latest);
             new GlobalSettings.Startup().Start(Configuration);
             new DependencyInjection.Startup().Start(services);
             new CachingStartup.Startup().Start(services);
@@ -61,15 +63,15 @@ namespace SingleSignOn
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1",
-                    new Info
+                    new OpenApiInfo
                     {
                         Title = "Single Sign On - API",
                         Version = "v1",
                         Description = "Single Sign On Microservice",
-                        Contact = new Contact
+                        Contact = new OpenApiContact
                         {
                             Name = "Otávio Larrosa",
-                            Url = "https://github.com/otaviolarrosa/SingleSignOn"
+                            Url = new Uri("https://github.com/otaviolarrosa/SingleSignOn")
                         }
                     });
             });
@@ -77,7 +79,7 @@ namespace SingleSignOn
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -92,6 +94,7 @@ namespace SingleSignOn
                 c.RoutePrefix = "swagger";
             });
             app.UseMvc();
+            
         }
     }
 }
