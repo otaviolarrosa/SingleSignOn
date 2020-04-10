@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Ping;
 using System;
 
-namespace SingleSignOn.Controllers
+namespace SingleSignOn.Api.Controllers
 {
     public class PingController : BaseController
     {

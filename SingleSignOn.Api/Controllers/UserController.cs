@@ -4,7 +4,7 @@ using SingleSignOn.Domain.Interfaces.Management.User;
 using SingleSignOn.Domain.ViewModels.User;
 using System;
 
-namespace SingleSignOn.Controllers
+namespace SingleSignOn.Api.Controllers
 {
     public class UserController : BaseController
     {

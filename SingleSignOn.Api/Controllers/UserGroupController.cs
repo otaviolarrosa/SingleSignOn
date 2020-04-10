@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.Interfaces.Management.UserGroup;
 using SingleSignOn.Domain.ViewModels.UserGroup;
 
-namespace SingleSignOn.Controllers
+namespace SingleSignOn.Api.Controllers
 {
     public class UserGroupController : BaseController
     {

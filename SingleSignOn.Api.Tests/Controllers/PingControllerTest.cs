@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using SingleSignOn.Controllers;
+using SingleSignOn.Api.Controllers;
 using SingleSignOn.Domain.Enums.Ping;
 using SingleSignOn.Domain.Interfaces.Ping;
 using SingleSignOn.Domain.ViewModels;

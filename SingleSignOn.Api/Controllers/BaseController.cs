@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SingleSignOn.Domain.ViewModels;
 using SingleSignOn.Utils.ExtensionMethods;
 
-namespace SingleSignOn.Controllers
+namespace SingleSignOn.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

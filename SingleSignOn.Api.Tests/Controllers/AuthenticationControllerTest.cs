@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using SingleSignOn.Controllers;
+using SingleSignOn.Api.Controllers;
 using SingleSignOn.Domain.Interfaces.Authentication;
 using SingleSignOn.Domain.ViewModels.User;
 using SingleSignOn.Tests.Shared;

@@ -4,7 +4,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using SingleSignOn.Controllers;
+using SingleSignOn.Api.Controllers;
 using SingleSignOn.Domain.Interfaces.Management.UserGroup;
 using SingleSignOn.Domain.ViewModels;
 using SingleSignOn.Domain.ViewModels.Permissions;
