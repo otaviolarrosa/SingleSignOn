@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="nunit" Version="3.11.0" />
     <PackageReference Include="NUnit.ConsoleRunner" Version="3.10.0" />
@@ -17,10 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\1 - Domain\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Data\SingleSignOn.Data.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
     <ProjectReference Include="..\SingleSignOn.Tests.Shared\SingleSignOn.Tests.Shared.csproj" />
-    <ProjectReference Include="..\..\src\2 - Infra\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
-    <ProjectReference Include="..\..\src\0 - Presentation\SingleSignOn\SingleSignOn.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\Authentication\" />
+    <Folder Include="Validators\User\" />
   </ItemGroup>
 
 </Project>

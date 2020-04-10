@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\2 - Infra\SingleSignOn.Data\SingleSignOn.Data.csproj" />
-    <ProjectReference Include="..\..\1 - Domain\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
-    <ProjectReference Include="..\..\2 - Infra\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Data\SingleSignOn.Data.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Domain\SingleSignOn.Domain.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
   </ItemGroup>
 
 </Project>

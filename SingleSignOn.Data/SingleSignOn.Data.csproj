@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\2 - Infra\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Utils\SingleSignOn.Utils.csproj" />
   </ItemGroup>
 
 </Project>

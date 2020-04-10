@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\2 - Infra\SingleSignOn.Caching\SingleSignOn.Caching.csproj" />
-    <ProjectReference Include="..\..\2 - Infra\SingleSignOn.Data\SingleSignOn.Data.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Caching\SingleSignOn.Caching.csproj" />
+    <ProjectReference Include="..\SingleSignOn.Data\SingleSignOn.Data.csproj" />
   </ItemGroup>
 
 </Project>
